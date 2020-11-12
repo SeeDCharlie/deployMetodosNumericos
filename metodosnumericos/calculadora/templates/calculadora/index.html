@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"  crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'calculadora/css/index/style.css' %}">
+
+  </head>
+<body>
+
+ <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="{% url 'home' %}"> Metodos Numericos</a>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav  w-70 nav-justified-center mt-5 mt-lg-0" id="navMenu">
+        <li class="nav-item" >
+          <a class="nav-link"  href="{% url 'primerCorte' %}"> Primer corte </a>
+        </li>
+        <li class="nav-item" >
+          <a class="nav-link"  href="{% url 'segundoCorte' %}">Segundo Corte</a>
+        </li>
+        <li class="nav-item" >
+          <a class="nav-link "  href="{% url 'tercerCorte' %}">Tercer corte</a>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+{% block content %}
+
+{% endblock %}
+<script src="{% static 'calculadora/js/index/control.js' %}"></script>
+
+</body>
+</html>

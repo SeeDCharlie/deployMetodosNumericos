@@ -1,0 +1,27 @@
+{% extends 'calculadora/index.html' %}
+{% block title %} Primer corte {% endblock %}
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+</head>
+{% block content %}
+<ul class="nav nav-tabs">
+    <li class="nav-item">
+        <a class="nav-link active" data-toggle="tab" href="#home">Calculadora de conversiones</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#menu1">IEEE</a>
+    </li>
+
+</ul>
+
+<!-- Tab panes -->
+<div class="tab-content">
+    <div class="tab-pane container active" id="home">...</div>
+    <div class="tab-pane container fade" id="menu1">...</div>
+</div>
+
+{% endblock %}
+</html>
