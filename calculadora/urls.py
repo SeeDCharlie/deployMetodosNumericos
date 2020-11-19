@@ -1,5 +1,7 @@
 from django.urls import path
-from .views import index, suma_resta, calcSumaMatriz
+from .views import *
+
+from .views import *
 from .views import *
 
 urlpatterns = [
