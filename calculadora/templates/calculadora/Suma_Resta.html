@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% load static %}
 
-    <link rel="stylesheet" href="{% static 'calculadora/css/bootstrap.min.css' %}">
-    <link rel="stylesheet" href="{% static 'calculadora/css/sumaResta/styles.css' %}">
+
 
     <title>Suma y Resta de Matrices</title>
 </head>
@@ -92,7 +91,7 @@
                 <button class="btn btn-danger" id="btnDeleteOne">Borrar</button>
             </div>
             <div class="col-12">
-                <table class="col-12" id="matrizUno"  style = 'width: 20px;'>
+                <table class="col-12" id="matrizUno"  >
 
                 </table>
             </div>
@@ -107,7 +106,7 @@
                 <button class="btn btn-danger" id="btnDeleteTwo">Borrar</button>
             </div>
             <div class="col-12">
-                <table id="matrizDos">
+                <table class="col-12" id="matrizDos">
 
                 </table>
             </div>
@@ -115,13 +114,21 @@
         <hr>
         {% csrf_token %}
         <div class="row">
-            <div class="col-3">
-                <button class="btn btn-info" id="btnSum" url="{% url 'calcSumaMatriz' %}">Sumar</button>
-
+            <div class="col-4" >
+                <strong><p id="nameOpera"></p></strong>
             </div>
-            <div class="col-3">
-                <button class="btn btn-info" id="btnRest" url = "{% url 'calcRestaMatriz' %}">Restar</button>
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Accion
+                </button>
+              
+                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                    <button class= "dropdown-item" id="btnSum" url="{% url 'calcSumaMatriz' %}">Sumar</button>
+                    <button class= "dropdown-item" id="btnRest" url = "{% url 'calcRestaMatriz' %}">Restar</button>
+                    <button class= "dropdown-item" id="btnMult" url="{% url 'calcMultiMatrix' %}">Multiplicar</button>
+                </div>
             </div>
+            
         </div>
         <div class="row">
             <div class="col-12">
@@ -136,9 +143,7 @@
     
     <br><br>
 
-    <script src="{% static 'calculadora/js/jquery-3.5.1.js' %}"></script>
-    <script src="{% static 'calculadora/js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'calculadora/js/popper.min.js' %}"></script>
-    <script src="{% static 'calculadora/js/sumaResta/controles.js' %}"></script>
+
+    
 </body>
 </html>

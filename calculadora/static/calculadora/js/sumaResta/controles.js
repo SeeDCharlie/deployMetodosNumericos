@@ -1,25 +1,3 @@
-
-function createMatrix(rows, cols, id_mariz) {
-    var content = ""
-    for ( r = 0; r < rows; r++){
-        content += "<tr>";
-        for(c = 0; c < cols; c++){
-            content += "<td><input type='number' style = 'width: 40px;-webkit-appearance: none;'></td> ";
-        }
-        content += "</tr>";
-    }
-
-
-    $('#'+id_mariz).append(content);
-}
-
-function getRowsCols(){
-    var dat = [[parseInt($('#rowsUno').val(), 10),parseInt($('#colsUno').val(),10)],
-                [parseInt($('#rowsDos').val(),10),parseInt($('#colsDos').val(),10)]];
-    return dat;
-}
-
-
 $( "#btnOkUno" ).on( "click", function() {
     $('#matrizUno').empty();
     var rows = $('#rowsUno').val();
@@ -33,8 +11,8 @@ $( "#btnOkUno" ).on( "click", function() {
 });
 $( "#btnOkDos" ).on( "click", function() {
     $('#matrizDos').empty(); 
-    var rows = $('#rowsUno').val();
-    var cols = $('#colsUno').val();
+    var rows = $('#rowsDos').val();
+    var cols = $('#colsDos').val();
     if(rows == ""){
         alert("Digite el numero de filas y columnas correcto !!!");
     }else{
@@ -42,15 +20,87 @@ $( "#btnOkDos" ).on( "click", function() {
     }
     
 });
-$( "#btnDeleteOne" ).on( "click", function() {
-    $('#matrizUno').empty();
+$( "#btnOkTres" ).on( "click", function() {
+    $('#matrizTres').empty(); 
+    var rows = $('#rowsTres').val();
+    var cols = $('#colsTres').val();
+    if(rows == "" || cols == ""){
+        alert("Digite el numero de filas y columnas correcto !!!");
+    }else{
+        createMatrix(rows, cols, "matrizTres");
+    }
     
+});
+//--------------------------------------------------------------------------------------------------------
+$( "#btnDeleteOne" ).on( "click", function() {
+    $('#matrizUno').empty(); 
 });
 $( "#btnDeleteTwo" ).on( "click", function() {
     $('#matrizDos').empty();    
 });
+$( "#btnDeleteTres" ).on( "click", function() {
+    $('#matrizTres').empty();    
+});
+//
+//--------------------------------------------------------------------------------------------------------
+$( "#btnMaInversa" ).on( "click", function() {
+    var rows = $('#rowsTres').val();
+    var cols = $('#colsTres').val();
 
+    if(rows == "" || cols == "" ){
+        alert("NO se han creado las matrices ");
+    }else{
+        if(rows == cols){
+            $('#nameOperaUno').empty();
+            $('#nameOperaUno').append("Inversa de una matriz");
+            var datos = JSON.stringify({
+                mUno: getMatrix('matrizTres')
+            }); 
+            calcMa('btnMaInversa',datos,'matrixResultDos');
+        }else{
+            alert("la matriz debe ser de dimensiones cuadradas!");
+        }
+        
+    }
+});
+//--------------------------------------------------------------------------------------------------------
+$( "#btnMaTrans" ).on( "click", function() {
+    var rows = $('#rowsTres').val();
+    var cols = $('#colsTres').val();
 
+    if(rows == "" || cols == "" ){
+        alert("NO se han creado las matrices ");
+    }else{
+        $('#nameOperaUno').empty();
+            $('#nameOperaUno').append("Transpuesta de una matriz ");
+        var datos = JSON.stringify({
+            mUno: getMatrix('matrizTres')
+        }); 
+        calcMa('btnMaTrans',datos,'matrixResultDos');
+    }
+});
+//--------------------------------------------------------------------------------------------------------
+$( "#btnMaGauss" ).on( "click", function() {
+    var rows = $('#rowsTres').val();
+    var cols = $('#colsTres').val();
+
+    if(rows == "" || cols == "" ){
+        alert("NO se han creado las matrices ");
+    }else{
+        
+        if(rows == (cols-1)){
+            $('#nameOperaUno').empty();
+            $('#nameOperaUno').append("Gauss Jordan ");
+            var datos = JSON.stringify({
+                mUno: getMatrix('matrizTres')
+            }); 
+            calcMa('btnMaGauss',datos,'matrixResultDos');
+        }else{
+            alert("la matriz debe ser de dimensiones cuadradas!");
+        }
+    }
+});
+//--------------------------------------------------------------------------------------------------------
 $( "#btnSum" ).on( "click", function() {
     var rowsCols = getRowsCols();
 
@@ -58,8 +108,13 @@ $( "#btnSum" ).on( "click", function() {
         alert("NO se han creado las matrices ");
     }else{
         if(rowsCols[0][0] == rowsCols[1][0] && rowsCols[0][1] == rowsCols[1][1]){
-
-            calcSum();
+            $('#nameOpera').empty();
+            $('#nameOpera').append("Suma de Matrices ");
+            var datos = JSON.stringify({
+                mUno: getMatrix('matrizUno'),
+                mDos: getMatrix('matrizDos')  
+            });
+            calcMa('btnSum', datos, 'matrixResult');
             
         }else{
             alert("las filas y columnas de las matrices deben ser iguales!!"); 
@@ -74,21 +129,44 @@ $( "#btnRest" ).on( "click", function() {
         alert("NO se han creado las matrices ");
     }else{
         if(rowsCols[0][0] == rowsCols[1][0] && rowsCols[0][1] == rowsCols[1][1]){
-            calcRest();
+            $('#nameOpera').empty();
+            $('#nameOpera').append("Resta de Matrices ");
+            var datos = JSON.stringify({
+                mUno: getMatrix('matrizUno'),
+                mDos: getMatrix('matrizDos')  
+            });
+            calcMa('btnRest', datos, 'matrixResult');
         }else{
             alert("las filas y columnas de las matrices deben ser iguales!!");
         }
     }
 });
-//------------------------------------------------------------------------
-function calcSum(){
-    $.ajax({
-        url: $('#btnSum').attr('url'),
-        data: {
-            dats: JSON.stringify({
+//----------------------------------------------------------------
+$( "#btnMult" ).on( "click", function() {
+    var rowsCols = getRowsCols();
+
+    if(rowsCols[0].includes(NaN) || rowsCols[1].includes(NaN) ){
+        alert("NO se han creado las matrices ");
+    }else{
+        if((rowsCols[0][0] == rowsCols[1][0]) || (rowsCols[0][0] == rowsCols[1][1]) ||
+        (rowsCols[0][1] == rowsCols[1][1]) || (rowsCols[0][1] == rowsCols[1][0]) ){
+            var datos = JSON.stringify({
                 mUno: getMatrix('matrizUno'),
                 mDos: getMatrix('matrizDos')  
-            }),
+            });
+            calcMa('btnMult', datos, 'matrixResult');
+            
+        }else{
+            alert("las filas y columnas de las matrices son incongruentes!!"); 
+        }
+    }
+});
+//------------------------------------------------------------------------
+function calcMa(btnName,datos, maResult){
+    $.ajax({
+        url: $('#'+btnName).attr('url'),
+        data: {
+            dats:datos,
             csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
             action: 'post'
         },
@@ -96,44 +174,22 @@ function calcSum(){
         dataType: 'json',
         success: function (data) {
             if (data.success) {
-               showResult(data.matrResult);     
+
+                showResult(data.matrResult, maResult );     
             }
             else {
                 alert('error');
             }
         },
         error: function () {
-            alert("no paso nada con el ajax!!");
+            alert("Incongruencia en los datos!!");
         }
     });
 }
 //------------------------------------------------------------------------
-function calcRest(){
-    $.ajax({
-        url: $('#btnRest').attr('url'),
-        data: {
-            dats: JSON.stringify({
-                mUno: getMatrix('matrizUno'),
-                mDos: getMatrix('matrizDos')  
-            }),
-            csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
-            action: 'post'
-        },
-        type: 'POST',
-        dataType: 'json',
-        success: function (data) {
-            if (data.success) {
-               showResult(data.matrResult);     
-            }
-            else {
-                alert('error');
-            }
-        },
-        error: function () {
-            alert("no paso nada con el ajax!!");
-        }
-    });
-}
+
+
+//---------------------------------------------------------------------
 function getMatrix(nametable){
     var dats = [];
     $('#'+nametable+' tr').each(function (index){
@@ -151,8 +207,8 @@ function getMatrix(nametable){
 
 //---------------------------------------------------------------------
 
-function showResult(matrixResult){
-    $('#matrixResult').empty();
+function showResult(matrixResult, nameMatrix){
+    $('#'+nameMatrix).empty();
     var content = ""
     $.each(matrixResult, function(i , row){
     
@@ -164,7 +220,68 @@ function showResult(matrixResult){
         content += "</tr>";
     });
         
-    $('#matrixResult').append(content);
+    $('#'+nameMatrix).append(content);
 }
 
 //---------------------------------------------------------------------
+
+function createMatrix(rows, cols, id_mariz) {
+    var content = ""
+    for ( r = 0; r < rows; r++){
+        content += "<tr>";
+        for(c = 0; c < cols; c++){
+            content += "<td><input type='number';-webkit-appearance: none;'></td> ";
+        }
+        content += "</tr>";
+    }
+
+
+    $('#'+id_mariz).append(content);
+}
+
+function getRowsCols(){
+    var dat = [[parseInt($('#rowsUno').val(), 10),parseInt($('#colsUno').val(),10)],
+                [parseInt($('#rowsDos').val(),10),parseInt($('#colsDos').val(),10)]];
+    return dat;
+}
+
+//-------------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------
+
+$( "#btnCalcularSin13" ).on( "click", function() {
+
+    var ecuacion = $('#ecuaSin13').val();
+    var a = $('#inaSin13').val();
+    var b = $('#inbSin13').val();
+    var n = $('#parSin13').val();
+
+    //calcEcua();
+
+});
+
+function calcEcua(btnName,datos, outputUno, outputDos){
+    $.ajax({
+        url: $('#'+btnName).attr('url'),
+        data: {
+            dats:datos,
+            csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+            action: 'post'
+        },
+        type: 'POST',
+        dataType: 'json',
+        success: function (data) {
+            if (data.success) {
+                
+                $('#' + outputUno).val(data.resultado);
+                $('#' + outputDos).val(data.error);
+    
+            }
+            else {
+                alert('error');
+            }
+        },
+        error: function () {
+            alert("Incongruencia en los datos!!");
+        }
+    });
+}

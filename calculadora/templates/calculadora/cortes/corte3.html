@@ -7,25 +7,26 @@
 <body>
 {% block content %}
  <ul class="nav nav-tabs">
-  <li class="nav-item">
-    <a class="nav-link active" data-toggle="tab" href="#home">Suma y resta </a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" data-toggle="tab" href="#menu1">Producto de matrices</a>
-  </li>
 
+  <li class="nav-item">
+    <a class="nav-link active" data-toggle="tab" href="#home">Suma, resta y Multiplicacion</a>
+  </li>
   <li class="nav-item">
     <a class="nav-link" data-toggle="tab" href="#menu2">Inversa Transpuesta GaussJordan</a>
   </li>
+  
 </ul>
 
 <!-- Tab panes -->
 <div class="tab-content">
+
   <div class="tab-pane container active" id="home">
     {% include 'calculadora/Suma_Resta.html' %}
   </div>
-  <div class="tab-pane container fade" id="menu1">...</div>
-  <div class="tab-pane container fade" id="menu2">...</div>
+  <div class="tab-pane container fade" id="menu2">
+    {% include 'calculadora/Inversa_Trans.html' %}
+  </div>
+
 </div>
 
 {% endblock %}

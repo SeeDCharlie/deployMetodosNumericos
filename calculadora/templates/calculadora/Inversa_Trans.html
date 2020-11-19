@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inversa Tanspuesta Gauss Jordan</title>
+</head>
+<body>
+
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-12">
+                <p class="display-2" style="text-align: center;">Inversa Transpuesta y Metodo de Gauss Jordan</p>
+            </div>
+            <div class="col-12">
+                <p class=""><strong>Instrucciones: </strong><br>
+                * Digite el numero de filas y de columnas de la matriz <br>
+                * Digite los Valores de la Matriz <br>
+                * Proceda a escoger una accion a realizar <br></p>
+                <br>
+
+            </div>
+
+        </div>
+        <hr>
+       <div class="row">
+            <div class="col-12">
+                <h3>Matriz</h3>
+            </div>
+            <div class="col-3" >
+                <h4>No. de Filas</h4>
+            </div>
+            <div class="col-3"  >
+                <h4>No. de Columnas</h4>
+            </div>
+       </div>
+        <div class="row">
+            <div class="col-3">
+                <input type="number" id="rowsTres" >
+            </div>
+            <div class="col-3">
+                <div class="col-3">
+                    <input type="number" id="colsTres" >
+                </div>
+            </div>
+            <div class="col-3">
+                <button class="btn btn-success" id="btnOkTres">Crear Matriz</button>
+            </div>
+
+        </div>
+        <hr>
+        
+        <hr>
+        <div  class="row">
+            <div class="col-5">
+                <h2>Datos de la Matriz</h2>
+            </div>
+            <div class="col-3">
+                <button class="btn btn-danger" id="btnDeleteTres">Borrar Datos</button>
+            </div>
+            <div class="col-12">
+            <table class="col-12" id="matrizTres"  >
+
+                </table>
+            </div>
+        </div>
+        <hr>
+       
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-4" >
+                <strong><p id="nameOperaUno"></p></strong>
+            </div>
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Accion
+                </button>
+              
+                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                    <button class= "dropdown-item" id="btnMaInversa" url="{% url 'calcMaInv' %}">Inversa</button>
+                    <button class= "dropdown-item" id="btnMaTrans" url = "{% url 'calcMaTrans' %}">Transpuesta</button>
+                    <button class= "dropdown-item" id="btnMaGauss" url="{% url 'calcMaGauss' %}">Gauss Jordan</button>
+                </div>
+            </div>
+            
+        </div>
+        <hr>
+        <br>
+        <div class="row">
+            <div class="col-12">
+                <table id="matrixResultDos" >
+
+                </table>
+            </div>
+            
+        </div>
+
+    </div>
+    
+    <br><br>
+
+    
+</body>
+</html>
