@@ -27,7 +27,7 @@ def montecarlo(a, b, k, n, f):
 
         return (ne / n) * (b - a) * k
 
-
+"""
 x, y = sp.symbols('x y')
 str_ecuacion = input("ingrese la ecuación:")
 funcion = sp.sympify(str_ecuacion)
@@ -42,3 +42,4 @@ k = float(sp.sympify(input("escriba el valor de k (punto 'y' mas alto de la func
 print("\naproximación: ", montecarlo(a, b, k , n, str_ecuacion ))
 
 sp.plot(funcion, (x, a-0.2, b+0.2), title = 'intervalo seleccionado: ' + str(a) + " , " + str(b))
+"""

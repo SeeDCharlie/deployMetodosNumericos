@@ -46,8 +46,8 @@
 
                         <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
-
-                        <button type="button" class="btn btn-primary" id="btnCalcularSin38">Calcular Simpson 3/8</button>                        
+                            {% csrf_token %}  
+                        <button type="button" class="btn btn-primary" id="btnCalcularSin38" url = "{% url 'calcSimp38' %}">Calcular Simpson 3/8</button>                        
                         <button style="position: absolute; right: 3%;" type="button" class="btn btn-success" id="btnGraficarSin38">Generar grafica</button>
 
                         </div>

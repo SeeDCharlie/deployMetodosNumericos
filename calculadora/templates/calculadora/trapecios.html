@@ -46,8 +46,8 @@
 
                         <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
-
-                        <button type="button" class="btn btn-primary" id="btnCalcularTrap">Calcular Trapecios</button>                        
+                            {% csrf_token %} 
+                        <button type="button" class="btn btn-primary" id="btnCalcularTrap" url = "{% url 'calcTrapecios' %}">Calcular Trapecios</button>                        
                         <button style="position: absolute; right: 3%;" type="button" class="btn btn-success" id="btnGraficarTrape">Generar grafica</button>
 
                         </div>

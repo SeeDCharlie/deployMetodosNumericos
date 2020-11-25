@@ -33,6 +33,7 @@ def Izquierda(f,a,b,n,Delta,valores):
         c+=1
     suma=suma*Delta
     print ("Suma totalmente loca izquierdo= "+str(suma))
+    return suma
     
 def Derecha(f,a,b,n,Delta,valores):
     ##___ sumatoria
@@ -44,11 +45,13 @@ def Derecha(f,a,b,n,Delta,valores):
         c+=1
     suma=suma*Delta
     print ("Suma totalmente loca Derecho= "+str(suma))
+    return suma
 
 def PuntoMedio(f,a,b,n,Delta,valores):
     total=SacarValorMedio(valores,n,f)
     total= total*Delta
     print  ("Suma totalmente loca punto Medio= "+str(total))
+    return total
 ##_________________________________________________
 def SacarValorMedio(valores,n,f):##______________________________________(5)
     c=0
@@ -93,12 +96,10 @@ def MetodoRentangulos(f,a,b,n):##____________________________(1)
         valores=Valores(a,b,Delta,n)
         print("ValoreDelta "+str(Delta)+"nuemero n="+str(n))  
         
-        Izquierda(f,a,b,n,Delta,valores)
-        Derecha(f,a,b,n,Delta,valores)
-        PuntoMedio(f,a,b,n,Delta,valores)
-
+        return [abs(Izquierda(f,a,b,n,Delta,valores)), abs(Derecha(f,a,b,n,Delta,valores)), abs(PuntoMedio(f,a,b,n,Delta,valores)) ]
     else:
         print ("El valor de los rectangulos no es entero positivo")
+        return ["Nan","Nan", "Nan"]
 ##________________________________________________LLamadas
 
 
@@ -107,9 +108,11 @@ def MetodoRentangulos(f,a,b,n):##____________________________(1)
 #"exp(-0.75*x)+sin(x)-0.5*(x**2)+1.25*x" - (-0.65) (2.81)
 #"atan(x)"   [0,2] 
 #"(1)/(1+x**2)" [0,1]
+"""
 Funcion ="exp(x/2)+(cos(1/2+x))/(1/2+x)"
 ValorA  = 0
 ValorB  = 3.1416
 NRectangulos= int (1000)
 #print ("inicio")
 MetodoRentangulos(Funcion,ValorA, ValorB,NRectangulos)
+"""

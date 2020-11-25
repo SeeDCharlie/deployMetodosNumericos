@@ -47,9 +47,9 @@
 
                         <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
-
-                        <button type="button" class="btn btn-primary" id="btnCalcularRect">Calcular Rectangulos</button>                        
-                        <button style="position: absolute; right: 3%;" type="button" class="btn btn-success" id="btnGraficarRect">Generar grafica</button>
+                            {% csrf_token %}  
+                        <button type="button" class="btn btn-primary" id="btnCalcularRect" url="{% url 'calcRectangulos' %}" >Calcular Rectangulos</button>                         
+                        <button style="position: absolute; right: 3%;" type="button" class="btn btn-success" id="btnGraficarRect" > Generar grafica</button>
 
                         </div>
                         </div>                        

@@ -26,6 +26,10 @@
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="{% url 'converBases' %}">Calculadora Conversiones</a>
             <a class="dropdown-item" href="{% url 'IEEE' %}">IEEE</a>
+            <a class="dropdown-item" href="{% url 'biseccion' %}">Bisección</a>
+            <a class="dropdown-item" href="{% url 'falsa_posicion' %}">Falsa Posición</a>
+            <a class="dropdown-item" href="{% url 'newton_Rhapson' %}">Newton Rhapson</a>
+            <a class="dropdown-item" href="{% url 'polinomio' %}">Polinomio</a>
         </li>
 
         <li class="nav-item dropdown">
@@ -63,6 +67,7 @@
 <script src="{% static 'calculadora/js/popper.min.js' %}"></script>
 <script src="{% static 'calculadora/js/bootstrap.min.js' %}"></script>
 <script src="{% static 'calculadora/js/sumaResta/controles.js' %}"></script>
+<script src="{% static 'calculadora/js/motorPrimerCote.js' %}"></script>
 
 </body>
 </html>

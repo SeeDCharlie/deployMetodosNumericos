@@ -31,21 +31,21 @@
           <div class="form-group">
             <label class="control-label col-sm-10" for="num">Número de particiones :</label>
             <div class="col-sm-10">
-              <input type="number" class="form-control" id="num" placeholder="Debe ser entero, ejemplo N > 0">
+              <input type="number" class="form-control" id="nMonte" placeholder="Debe ser entero, ejemplo N > 0">
             </div>
           </div>
 
           <div class="form-group">
             <label class="control-label col-sm-8" for="pwd">Valor de k :</label>
             <div class="col-sm-10">
-              <input type="number" class="form-control" id="pwd"
+              <input type="number" class="form-control" id="kMonte"
                 placeholder="Ingresa punto 'y' mas alto de la grafica">
             </div>
           </div>
 
           <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-              <button type="button" class="btn btn-primary" id="btnCalcMonte">Calcular montecarlo</button>
+              <button type="button" class="btn btn-primary" id="btnCalcMonte" url="{% url 'calcMonte' %}">Calcular montecarlo</button>
               <button type="button" class="btn btn-warning" id="btnGenGrafMonte">Generar grafica</button>
             </div>
           </div>

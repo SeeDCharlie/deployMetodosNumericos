@@ -11,6 +11,14 @@ urlpatterns = [
     
     path('grafica/<str:funcion>/<str:a>/<str:b>', grafica, name="grafica"),
 
+    path('polinomio/', polinomio,name="polinomio"),
+
+    path('newton_Rhapson/', newton_Rhapson,name="newton_Rhapson"),
+
+    path('falsa_posicion/', falsa_posicion,name="falsa_posicion"),
+    
+    path('biseccion/', biseccion,name="biseccion"),
+
     path('IEEE/', IEEE,name="IEEE"),
     
     path('converBases/', converBases,name="converBases"),
@@ -52,4 +60,19 @@ urlpatterns = [
     #simpson1/3
     path('calcSimpson13/' , calcSimp13 , name = 'calcSimp13'),
 
+    path('calcMonte/', calcMonte, name = 'calcMonte'),
+
+    path('calcSimp38/', calcSimp38, name = 'calcSimp38'),
+
+    path('calcTrapecios/', calcTrapecios, name = 'calcTrapecios'),
+
+    path('calcRectangulos/', calcRectangulos, name = 'calcRectangulos'),
+    
+    path('calcBiseccion/', calcBiseccion, name = 'calcBiseccion'),
+
+    path('calcFalsaPoci/', calcFalsaPoci, name = 'calcFalsaPoci'),
+
+    path('calcNewton/', calcNewton, name = 'calcNewton'),
+
+    path('calcPolinomio/', calcPolinomio, name = 'calcPolinomio'),
 ]

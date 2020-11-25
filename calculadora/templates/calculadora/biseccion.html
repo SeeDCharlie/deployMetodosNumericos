@@ -1,0 +1,89 @@
+{% extends 'calculadora/index.html' %}
+
+{% block content %}
+<div class="row">
+  <div class="col-sm-7">
+        <div class="d-flex flex-column justify-content-left">
+            <div class="p-4">
+
+          
+                        <div class="form-group">
+                        
+                        <label class="control-label col-sm-8" >Ingrese la ecuación:</label>
+                        <div class="col-sm-10">
+                        <input type="text" class="form-control" id="ecuaBise" placeholder="Ingresa una funcion">
+                        </div>
+                        </div>                                                                        
+
+                        <br>
+
+                        <div class="form-group">                         
+                        <label class="control-label col-sm-8" style="font-size:130%;"> Intervalos</label>                                              
+                        <label class="control-label col-sm-8" for="inaBise">Extremo inferior del intervalo (a):</label>
+                        <div class="col-sm-10">                        
+                        <input type="number" class="form-control" id="inaBise" placeholder="Ingresa intervalo a">
+                        </div>
+                        </div>
+
+                        <div class="form-group">
+                        <label class="control-label col-sm-8" for="inbBise">Extremo superior del intervalo (b):</label>
+                        <div class="col-sm-10">
+                        <input type="number" class="form-control" id="inbBise" placeholder="Ingresa intervalo b">
+                        </div>
+                        </div>                        
+                        <div class="form-group">
+                            <label class="control-label col-sm-8" for="erToBise">Error de Tolerencia:</label>
+                            <div class="col-sm-10">
+                            <input type="number" class="form-control" id="erToBise" placeholder="Error mayor a 0 y menor a 1">
+                        </div>
+                        <br>                        
+                        <button style="position: absolute; left: 7%;" type="button" class="btn btn-danger" id="btnIntervalosBise">Graficar en intervalo</button>                        
+                        </div>                        
+                        <br>       
+
+                        <br>
+
+                        <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            {% csrf_token %}    
+                        <button type="button" class="btn btn-primary" id="btnCalcularBise" url="{% url 'calcBiseccion' %}">Calcular Bisección</button>                        
+                        <button style="position: absolute; right: 3%;" type="button" class="btn btn-success" id="btnGraficarBise">Generar grafica</button>
+
+                        </div>
+                        </div>                        
+                        <br>
+                        <div class="form-group">
+                            <label class="control-label col-sm-10" for="reBise">Resultado:</label>                                              
+                        <div class="col-sm-10">
+                            <output type="number" class="form-control" id="reBise" placeholder="Resultado">                        
+                        </div>                        
+                        </div>  
+
+                        <div class="form-group">
+                            <label class="control-label col-sm-10" for="errBise">Error Relativo:</label>                                            
+                        <div class="col-sm-10">
+                            <output type="number" class="form-control" id="errBise" placeholder="Error">  
+                        </div>
+
+                        </div>
+
+            </div>
+        </div>
+  </div>
+  <div class="col-sm-3">
+      <div class="d-flex flex-column">
+        
+        <div class="p-4">
+            <img src="{%url 'grafica' funcion='x^2' a=-12 b=12 %}" height="300" width="400" id="imgUnoBisec">                  
+        </div>
+        
+        <div class="d-flex flex-row">
+            <div class="p-4">
+                <img src="{%url 'grafica' funcion='x^2' a=-12 b=12 %}" height="300" width="400" id="imgDosBisec">    
+            </div>                              
+      </div>
+  </div>
+</div>
+
+
+{% endblock %}
