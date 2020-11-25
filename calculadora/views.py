@@ -167,7 +167,7 @@ def calcMonte(request):
         k = float(sp.sympify(json.loads(request.POST.get('dats'))['k']))
         n = int(json.loads(request.POST.get('dats'))['n'])
         resultado = MonteCarlo.montecarlo(a, b, k, n, funcion)
-        print("r monte carlo 1/3 : ", resultado , "  error : ", error)
+        print("r monte carlo : ", resultado )
         return JsonResponse({'uno': str(resultado), "dos": '',"tres":'', 'success': True})
     return JsonResponse({'success':False})
 

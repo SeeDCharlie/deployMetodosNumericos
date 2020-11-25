@@ -6,7 +6,7 @@ from matplotlib.backends.backend_agg import FigureCanvasAgg
 def evalAtPointNP(f, x):
         b = sp.sympify(f).free_symbols
         var = b.pop()
-        return sp.sympify(f).evalf(subs={var: x})
+        return sp.sympify(f).subs(var, x)
 
 def montecarlo(a, b, k, n, f):
         # Areabajo la curva
