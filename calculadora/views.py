@@ -1,9 +1,11 @@
 from django.shortcuts import render
 import matplotlib.pyplot as plt
 import io
-import urllib, base64
+import urllib
+import base64
 from matplotlib.backends.backend_agg import FigureCanvasAgg
 from django.http import HttpResponse
+from matplotlib.figure import Figure
 from random import sample
 from io import StringIO
 from calculadora.motores import SumaResta
@@ -18,59 +20,85 @@ import sympy as sp
 from sympy import *
 import numpy as np
 from sympy.parsing.sympy_parser import parse_expr
-
+import cmath
+from sympy import log, sqrt
+from sympy.abc import x, y
 # Create your views here.
 
-def index(request):
-    return render(request,'calculadora/index.html')
 
-@csrf_exempt 
+def index(request):
+    return render(request, 'calculadora/index.html')
+
+def IEEE(request):
+    return render(request, 'calculadora/IEEE.html')
+
+def converBases(request):
+    return render(request, 'calculadora/conversionesBases.html')
+
+def trapecios(request):
+    return render(request, 'calculadora/trapecios.html')
+
+def rectangulos(request):
+    return render(request, 'calculadora/rectangulos.html')
+
+def monteCarlo(request):
+    return render(request, 'calculadora/monteCarlo.html')
+
+def simpson13(request):
+    return render(request, 'calculadora/simpson1_3.html')
+
+def simpson38(request):
+    return render(request, 'calculadora/simpson3_8.html')
+
+def SuMaMu(request):
+    return render(request, 'calculadora/Suma_Resta.html')
+
+def inTraGau(request):
+    return render(request, 'calculadora/Inversa_Trans.html')
+
 def calcSumaMatriz(request):
     if request.is_ajax() and request.method == 'POST':
         mDos = json.loads(request.POST.get('dats'))['mUno']
         mUno = json.loads(request.POST.get('dats'))['mDos']
-        matrizResultado = SumaResta.suma(mUno,mDos).tolist()
-        return JsonResponse({'matrResult':matrizResultado, 'success':True})      
-    return JsonResponse({'success':False})
+        matrizResultado = SumaResta.suma(mUno, mDos).tolist()
+        return JsonResponse({'matrResult': matrizResultado, 'success': True})
+    return JsonResponse({'success': False})
 
-@csrf_exempt
 def calcRestaMatriz(request):
     if request.is_ajax() and request.method == 'POST':
         mDos = json.loads(request.POST.get('dats'))['mDos']
         mUno = json.loads(request.POST.get('dats'))['mUno']
-        matrizResultado = SumaResta.resta(mUno,mDos).tolist()
-        return JsonResponse({'matrResult':matrizResultado, 'success':True})
-    return JsonResponse({'success':False})
+        matrizResultado = SumaResta.resta(mUno, mDos).tolist()
+        return JsonResponse({'matrResult': matrizResultado, 'success': True})
+    return JsonResponse({'success': False})
 
-#multiplicacion de matrices
+# multiplicacion de matrices
 
-@csrf_exempt
 def calcMultMatriz(request):
     if request.is_ajax() and request.method == 'POST':
         mUno = json.loads(request.POST.get('dats'))['mUno']
         mDos = json.loads(request.POST.get('dats'))['mDos']
-        matrizResultado = motorMAtrix.multiMatrix(mUno,mDos).tolist()
-        return JsonResponse({'matrResult':matrizResultado, 'success':True})
-    return JsonResponse({'success':False})
+        matrizResultado = motorMAtrix.multiMatrix(mUno, mDos).tolist()
+        return JsonResponse({'matrResult': matrizResultado, 'success': True})
+    return JsonResponse({'success': False})
 
-#inversa de una matriz
-@csrf_exempt
+# inversa de una matriz
 def calcMaInver(request):
     if request.is_ajax() and request.method == 'POST':
         mUno = json.loads(request.POST.get('dats'))['mUno']
         matrizResultado = motorMAtrix.matrizInver(mUno).tolist()
-        return JsonResponse({'matrResult':matrizResultado, 'success':True})
-    return JsonResponse({'success':False})
-@csrf_exempt
-#transpuesta de una matriz
+        return JsonResponse({'matrResult': matrizResultado, 'success': True})
+    return JsonResponse({'success': False})
+
+# transpuesta de una matriz
 def calcMaTrans(request):
     if request.is_ajax() and request.method == 'POST':
         mUno = json.loads(request.POST.get('dats'))['mUno']
         matrizResultado = motorMAtrix.matrixTran(mUno).tolist()
-        return JsonResponse({'matrResult':matrizResultado, 'success':True})
-    return JsonResponse({'success':False})
-@csrf_exempt
-#metodo de gauss jordan a una matriz
+        return JsonResponse({'matrResult': matrizResultado, 'success': True})
+    return JsonResponse({'success': False})
+
+# metodo de gauss jordan a una matriz
 def calcMaGauss(request):
     if request.is_ajax() and request.method == 'POST':
         mUno = json.loads(request.POST.get('dats'))['mUno']
@@ -78,38 +106,38 @@ def calcMaGauss(request):
         mUno = [num[:-1] for num in mUno]
         matrizResultado = motorMAtrix.gaussJordan(mUno, res).tolist()
         letters = string.ascii_lowercase
-        rand_letters = random.choices(letters,k=len(matrizResultado))
-        matrizResultado = [(rand_letters[i] +" = "+ str(dat)) for i, dat in enumerate(matrizResultado)]
-        return JsonResponse({'matrResult':[matrizResultado], 'success':True})
-    return JsonResponse({'success':False})
+        rand_letters = random.choices(letters, k=len(matrizResultado))
+        matrizResultado = [(rand_letters[i] + " = " + str(dat))
+                            for i, dat in enumerate(matrizResultado)]
+        return JsonResponse({'matrResult': [matrizResultado], 'success': True})
+    return JsonResponse({'success': False})
 
-@csrf_exempt
 def calcSimp13(request):
     if request.is_ajax() and request.method == 'POST':
+        m = Simpson13.mSimp13()
+        m.funcion = sp.sympify(json.loads(request.POST.get('dats'))['funcion'])
         a = float(sp.sympify(json.loads(request.POST.get('dats'))['a']))
         b = float(sp.sympify(json.loads(request.POST.get('dats'))['b']))
         n = int(json.loads(request.POST.get('dats'))['n'])
-        resultado = Simpson13.simpsonCompuesto13(a,b,n)
-        error = abs(error(a, b, n))
-        return JsonResponse({'result':resultado,'error':error, 'success':True})
+        resultado = m.simpsonCompuesto13(a, b, n)
+        error = abs(m.error(a, b, n))
+        print("r simpson 1/3 : ", resultado , "  error : ", error)
+        return JsonResponse({'uno': str(resultado), "dos": str(error),"tres":'', 'success': True})
     return JsonResponse({'success':False})
-    print("")
 
-def primerCorte(request):
-    return render(request, 'calculadora/cortes/corte1.html')
+def calcMonte(request):
 
-def segundoCorte(request):
-    return render(request, 'calculadora/cortes/corte2.html')
-
-def tercerCorte(request):
-    return render(request, 'calculadora/cortes/corte3.html')
-
-def trapecios(request):
-    return render(request,'')
-
-def monteCarlo(request):
-    return render(request, 'calculadora/monteCarlo.html')
-
+    if request.is_ajax() and request.method == 'POST':
+        m = Simpson13.mSimp13()
+        m.funcion = sp.sympify(json.loads(request.POST.get('dats'))['funcion'])
+        a = float(sp.sympify(json.loads(request.POST.get('dats'))['a']))
+        b = float(sp.sympify(json.loads(request.POST.get('dats'))['b']))
+        n = int(json.loads(request.POST.get('dats'))['n'])
+        resultado = m.simpsonCompuesto13(a, b, n)
+        error = abs(m.error(a, b, n))
+        print("r simpson 1/3 : ", resultado , "  error : ", error)
+        return JsonResponse({'uno': str(resultado), "dos": str(error),"tres":'', 'success': True})
+    return JsonResponse({'success':False})
 
 
 
@@ -117,17 +145,19 @@ def grafica(request,funcion, a , b ):
 
     func = sp.sympify(funcion)
       
-    xDats = [i for i in range(int(a),int(b)+1)]
-    yDats = [ func.subs('x',i) for i in xDats]
+    xDats = [i for i in np.arange(float(a),float(b)+1.0, 0.3)]
+    yDats = [ float('{:.15f}'.format(float(func.subs('x',i)))) for i in xDats]
 
-    fig, ax = plt.subplots()
+    fig = Figure()
+    canvas = FigureCanvasAgg(fig)
+    ax = fig.add_subplot(111)
     ax.plot(xDats, yDats)
 
-    ax.set(xlabel='time (s)', ylabel='voltage (mV)',
-           title='About as simple as it gets, folks')
+    ax.set(xlabel='eje x', ylabel='eje y',
+           title='Grafica de la Funcion')
     ax.grid()
 
-    response = HttpResponse(content_type = 'image/png')
-    canvas = FigureCanvasAgg(fig)
-    canvas.print_png(response)
+    response = HttpResponse(content_type = 'image/jpg')
+    
+    canvas.print_jpg(response)
     return response

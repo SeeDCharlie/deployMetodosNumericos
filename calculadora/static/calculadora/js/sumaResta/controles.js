@@ -247,21 +247,12 @@ function getRowsCols(){
     return dat;
 }
 
-//-------------------------------------------------------------------------------------------------------
-//-------------------------------------------------------------------------------------------------------
+function graficarFuncion(funcion, a, b, nameImg){
+    $("#"+nameImg).attr("src","/grafica/"+funcion+"/"+a+"/"+b);
+    
+}
 
-$( "#btnCalcularSin13" ).on( "click", function() {
-
-    var ecuacion = $('#ecuaSin13').val();
-    var a = $('#inaSin13').val();
-    var b = $('#inbSin13').val();
-    var n = $('#parSin13').val();
-
-    //calcEcua();
-
-});
-
-function calcEcua(btnName,datos, outputUno, outputDos){
+function calcEcua(btnName,datos, ouUno, ouDos, ouTres){
     $.ajax({
         url: $('#'+btnName).attr('url'),
         data: {
@@ -273,10 +264,10 @@ function calcEcua(btnName,datos, outputUno, outputDos){
         dataType: 'json',
         success: function (data) {
             if (data.success) {
-                
-                $('#' + outputUno).val(data.resultado);
-                $('#' + outputDos).val(data.error);
-    
+
+                $("#"+ouUno).val(data.uno);
+                $("#"+ouDos).val(data.dos);
+                $("#"+ouTres).val(data.tres);
             }
             else {
                 alert('error');
@@ -287,3 +278,164 @@ function calcEcua(btnName,datos, outputUno, outputDos){
         }
     });
 }
+//-------------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------
+//-------metodos simpson 1/ 3
+
+
+
+$("#btnGraficarSin13").on("click", function(){
+    var funcion = $("#ecuaSin13").val();
+    if(funcion != null && funcion != ""){
+        graficarFuncion(funcion, -12, 12, "imgUnoSin13");
+    }
+    else{   
+        alert("Ingrese Una funcion");
+    }
+});
+
+$("#btnIntervalosSin13").on("click", function(){
+
+    var funcion = $("#ecuaSin13").val();
+    var a = $("#inaSin13").val();
+    var b = $("#inbSin13").val();
+
+    if(funcion != null && funcion != "" && a != "" && b != ""){
+        graficarFuncion(funcion, a, b, "imgDosSin13");
+    }
+    else{
+        
+        alert("Ingrese Una funcion");
+    }
+
+});
+
+$( "#btnCalcularSin13" ).on( "click", function() {
+
+    var ecuacion = $('#ecuaSin13').val();
+    var _a = $('#inaSin13').val();
+    var _b = $('#inbSin13').val();
+    var _n = $('#parSin13').val();
+    var datos = JSON.stringify({
+        funcion:ecuacion,
+        a:_a,
+        b:_b,
+        n:_n
+    });
+    var r = calcEcua("btnCalcularSin13", datos,"reSin13", "errSin13", "sd" );
+
+});
+//-------------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------
+//-------metodos simpson 3 / 8
+
+$("#btnIntervalosSin38").on("click", function(){
+
+    var funcion = $("#ecuaSin38").val();
+    var a = $("#inaSin38").val();
+    var b = $("#inbSin38").val();
+
+    if(funcion != null && funcion != "" && a != "" && b != ""){
+        graficarFuncion(funcion, a, b, "imgDosSimp38");
+    }
+    else{
+        
+        alert("Ingrese Una funcion");
+    }
+
+});
+
+$("#btnGraficarSin38").on("click", function(){
+    var funcion = $("#ecuaSin38").val();
+    if(funcion != null && funcion != ""){
+        graficarFuncion(funcion, -12, 12, "imgUnoSimp38");
+    }
+    else{   
+        alert("Ingrese Una funcion");
+    }
+});
+
+
+//-------------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------
+//-------metodos montecarlo
+
+$("#btnGraIntervMonte").on("click", function(){
+
+    var funcion = $("#ecuacionMonte").val();
+    var a = $("#aMonte").val();
+    var b = $("#bMonte").val();
+
+    if(funcion != null && funcion != "" && a != "" && b != ""){
+        graficarFuncion(funcion, a, b, "imgDosMonte");
+    }
+    else{
+        alert("Ingrese Una funcion");
+    }
+});
+
+$("#btnGenGrafMonte").on("click", function(){
+    var funcion = $("#ecuacionMonte").val();
+    if(funcion != null && funcion != ""){
+        graficarFuncion(funcion, -12, 12, "imgUnoMonte");
+    }
+    else{   
+        alert("Ingrese Una funcion");
+    }
+});
+
+//-------------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------
+//-------metodos trapecios
+
+$("#btnIntervalosTrap").on("click", function(){
+
+    var funcion = $("#ecuaTrap").val();
+    var a = $("#inaTrap").val();
+    var b = $("#inbTrap").val();
+
+    if(funcion != null && funcion != "" && a != "" && b != ""){
+        graficarFuncion(funcion, a, b, "imgDosTrap");
+    }
+    else{
+        alert("Ingrese Una funcion");
+    }
+});
+
+$("#btnGraficarTrape").on("click", function(){
+    var funcion = $("#ecuaTrap").val();
+    if(funcion != null && funcion != ""){
+        graficarFuncion(funcion, -12, 12, "imgUnoTrap");
+    }
+    else{   
+        alert("Ingrese Una funcion");
+    }
+});
+
+//-------------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------
+//-------metodos rectangulos
+
+$("#btnIntervalosRect").on("click", function(){
+
+    var funcion = $("#ecuaRect").val();
+    var a = $("#inaRect").val();
+    var b = $("#inbRect").val();
+
+    if(funcion != null && funcion != "" && a != "" && b != ""){
+        graficarFuncion(funcion, a, b, "imgDosRect");
+    }
+    else{
+        alert("Ingrese Una funcion");
+    }
+});
+
+$("#btnGraficarRect").on("click", function(){
+    var funcion = $("#ecuaRect").val();
+    if(funcion != null && funcion != ""){
+        graficarFuncion(funcion, -12, 12, "imgUnoRect");
+    }
+    else{   
+        alert("Ingrese Una funcion");
+    }
+});

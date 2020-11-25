@@ -1,0 +1,97 @@
+{% extends 'calculadora/index.html' %}
+
+{% block content %}
+
+<div class="row">
+  <div class="col-sm-7">
+        <div class="d-flex flex-column justify-content-left">
+            <div class="p-4">
+
+
+                        <div class="form-group">
+                        <label class="control-label col-sm-8" >Ingrese la ecuación:</label>
+                        <div class="col-sm-10">
+                        <input type="text" class="form-control" id="ecuaRect" placeholder="Ingresa una funcion">
+                        </div>
+                        </div>                                                                        
+
+                        <br>
+
+                        <div class="form-group">                         
+                        <label class="control-label col-sm-8" style="font-size:130%;"> Intervalos</label>                                              
+                        <label class="control-label col-sm-8" for="inaRect">Extremo inferior del intervalo (a):</label>
+                        <div class="col-sm-10">                        
+                        <input type="number" class="form-control" id="inaRect" placeholder="Ingresa intervalo a">
+                        </div>
+                        </div>
+
+                        <div class="form-group">
+                        <label class="control-label col-sm-8" for="inbRect">Extremo superior del intervalo (b):</label>
+                        <div class="col-sm-10">
+                        <input type="number" class="form-control" id="inbRect" placeholder="Ingresa intervalo b">
+                        </div>
+                        <br>                        
+                        <button style="position: absolute; left: 8%;" type="button" class="btn btn-danger" id="btnIntervalosRect">Graficar en intervalo</button>
+                        <br>
+                        </div>                        
+                        <br>
+
+                        <div class="form-group">
+                        <label class="control-label col-sm-10" for="parRect">Número de particiones :</label>
+                        <div class="col-sm-10">
+                        <input type="number" class="form-control" id="parRect" placeholder="Debe ser entero, ejemplo N > 0">
+                        </div>
+                        </div>
+
+                        <br>
+
+                        <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+
+                        <button type="button" class="btn btn-primary" id="btnCalcularRect">Calcular Rectangulos</button>                        
+                        <button style="position: absolute; right: 3%;" type="button" class="btn btn-success" id="btnGraficarRect">Generar grafica</button>
+
+                        </div>
+                        </div>                        
+                        <br>
+                        <div class="form-group">
+                            <label class="control-label col-sm-10" for="extIzRect">Resultado Ext. Izquierdo:</label>                                              
+                        <div class="col-sm-10">
+                            <output type="number" class="form-control" id="extIzRect" placeholder="Resultado Ext. izquierdo">                        
+                        </div>                        
+                        </div>  
+
+                        <div class="form-group">
+                            <label class="control-label col-sm-10" for="puntoMedRect">Resultado Punto Medio:</label>                                            
+                        <div class="col-sm-10">
+                            <output type="number" class="form-control" id="puntoMedRect" placeholder="Medio">  
+                        </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-sm-10" for="extDeRect">Resultado Ext. Derecho:</label>                                            
+                        <div class="col-sm-10">
+                            <output type="number" class="form-control" id="extDeRect" placeholder="Derecho">  
+                        </div>                        
+                        
+                        </div>
+
+            </div>
+        </div>
+  </div>
+  <div class="col-sm-3">
+      <div class="d-flex flex-column">
+        
+        <div class="p-4">
+            <img src="{%url 'grafica' funcion='x^2' a=-12 b=12 %}" height="300" width="400" id="imgUnoRect">                  
+        </div>
+        
+        <div class="d-flex flex-row">
+            <div class="p-4">
+                <img src="{%url 'grafica' funcion='x^2' a=-12 b=12 %}" height="300" width="400" id="imgDosRect">    
+            </div>                              
+      </div>
+  </div>
+</div>
+
+{% endblock %}

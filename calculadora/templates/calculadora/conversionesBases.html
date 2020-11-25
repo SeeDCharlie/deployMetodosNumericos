@@ -1,0 +1,73 @@
+{% extends 'calculadora/index.html' %}
+
+{% block content %}
+<div class="row">
+  <div class="col-sm-7">
+        <div class="d-flex flex-column justify-content-left">
+            <div class="p-4">
+
+          
+                        <div class="form-group">
+                        <label class="control-label col-sm-8" >Base decimal:</label>
+                        <div class="col-sm-10">
+                        <input type="number" class="form-control" id="numDecimal" placeholder="0 - 9">
+                        </div>
+                        </div>                                                                        
+
+                        <br>
+
+                        <div class="form-group">
+                            <label class="control-label col-sm-8" >Base Binaria:</label>
+                            <div class="col-sm-10">
+                                <input type="number" class="form-control" id="numBinaria" placeholder="0 - 1">
+                            </div>
+                        </div>                          
+                        
+                        <br>
+
+                        <div class="form-group">
+                            <label class="control-label col-sm-8" >Base Octal:</label>
+                            <div class="col-sm-10">
+                                <input type="number" class="form-control" id="numOctal" placeholder="0 - 7">
+                            </div>
+                        </div>                          
+                        
+                        <br>
+
+                        <div class="form-group">
+                            <label class="control-label col-sm-8" >Base Hexadecimal:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="numOctal" placeholder="0 - 9 / A - F">
+                            </div>
+                        </div>                          
+                        
+                        <br>                        
+                        <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+
+                        <button type="button" class="btn btn-primary" id="btnCalcularBases">Calcular  Bases</button>                        
+                        <br>
+                        <br>
+                            
+                        <button  type="button" class="btn btn-success" id="btnBasesLim">Limpiar</button>
+
+                        </div>
+                        </div>                                                     
+
+            </div>
+        </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+        <div class="d-flex flex-column">     
+            <br> 
+            <br>
+            <br>            
+            <br>
+    <img src="https://sites.google.com/site/md4sc1b12210449/_/rsrc/1328937584847/unidad-1/n004.JPG" height="294" width="320 ">
+</div>
+</div>
+  </div>        
+
+{% endblock %}

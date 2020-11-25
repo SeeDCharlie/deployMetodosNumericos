@@ -1,0 +1,93 @@
+{% extends 'calculadora/index.html' %}
+
+{% block content %}
+<div class="row">
+  <div class="col-sm-7">
+        <div class="d-flex flex-column justify-content-left">
+            <div class="p-4">
+          
+                        <div class="form-group">                         
+                        <label class="control-label col-sm-8" style="font-size:130%;"> Número</label>  
+                        <br>                                            
+                        <br>
+                        <label class="control-label col-sm-8" for="ieDecimal">Decimal:</label>
+                        <div class="col-sm-10">                        
+                        <input type="number" class="form-control" id="ieDecimal" placeholder="0 - 9">
+                        </div>
+                        </div>
+
+                        <br>
+
+                        <div class="form-group">
+                        <label class="control-label col-sm-8" for="ieBinario">Binario:</label>
+                        <div class="col-sm-10">
+                        <input type="number" class="form-control" id="ieBinario" placeholder="0 - 1">
+                        </div>                                                                                                                  
+                        </div>                                                
+
+                        <br>
+
+                        <div class="form-group">                         
+                            <label class="control-label col-sm-8" style="font-size:130%;"> 32 BITS</label>  
+                            <br>                                                                        
+                            <label class="control-label col-sm-8" for="ieSigno32">Signo:</label>
+                            <div class="col-sm-2">                        
+                            <input type="number" class="form-control" id="ieSigno32" placeholder="0 - 1" >
+                            </div>
+                            
+                            <br>
+                            <label class="control-label col-sm-8" for="ieExp32">Exponente:</label>
+                            <div class="col-sm-4">                        
+                            <input type="number" class="form-control" id="ieExp32" placeholder="0 - 1" >
+                            </div>
+
+                            <br>
+                            <label class="control-label col-sm-8" for="ieMan32">Mantisa:</label>
+                            <div class="col-sm-8">                        
+                            <input type="number" class="form-control" id="ieMan32" placeholder="0 - 1" >
+                            </div>
+                        </div>
+                        <br>
+                        <!-- xddddddddddd   -->
+
+                        <div class="form-group">                         
+                            <label class="control-label col-sm-8" style="font-size:130%;"> 64 BITS</label>  
+                            <br>                                                                        
+                            <label class="control-label col-sm-8" for="ieSigno64">Signo:</label>
+                            <div class="col-sm-2">                        
+                            <input type="number" class="form-control" id="ieSigno64" placeholder="0 - 1" >
+                            </div>
+                            
+                            <br>
+                            <label class="control-label col-sm-8" for="ieExp64">Exponente:</label>
+                            <div class="col-sm-4">                        
+                            <input type="number" class="form-control" id="ieExp64" placeholder="0 - 1" >
+                            </div>
+
+                            <br>
+                            <label class="control-label col-sm-8" for="ieMan64">Mantisa:</label>
+                            <div class="col-sm-8">                        
+                            <input type="number" class="form-control" id="ieMan64" placeholder="0 - 1" >
+                            </div>
+                        </div>
+                        <br>
+
+                        <!--  xdddddddddd -->
+
+                        <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                        
+                        <br>
+                        <button type="button" class="btn btn-primary" id="btnCalcularIE">Calcular</button>       
+                        <br>
+                        <br>                 
+                        <button type="button" class="btn btn-danger" id="btnLimpIE">Limpiar</button>
+
+                        </div>
+                        </div>                        
+                        <br>                        
+            </div>
+        </div>
+  </div>
+  
+{% endblock %}

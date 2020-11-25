@@ -10,34 +10,54 @@
   </head>
 <body>
 
- <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">MetodosNumericos</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand" href="{% url 'home' %}"> Metodos Numericos</a>
-
+  
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav  w-70 nav-justified-center mt-5 mt-lg-0" id="navMenu">
-        <li class="nav-item" >
-          <a class="nav-link"  href="{% url 'primerCorte' %}"> Primer corte </a>
+      <ul class="navbar-nav mr-auto">
+        
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Primer Corte
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="{% url 'converBases' %}">Calculadora Conversiones</a>
+            <a class="dropdown-item" href="{% url 'IEEE' %}">IEEE</a>
         </li>
-        <li class="nav-item" >
-          <a class="nav-link"  href="{% url 'segundoCorte' %}">Segundo Corte</a>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Segundo Corte
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="{% url 'montecarlo' %}">Monte Carlo</a>
+            <a class="dropdown-item" href="{% url 'simpson13' %}">Simpson 1/3</a>
+            <a class="dropdown-item" href="{% url 'simpson38' %}">Simpson 3/8</a>
+            <a class="dropdown-item" href="{% url 'trapecios' %}">Trapecios</a>
+            <a class="dropdown-item" href="{% url 'rectangulos' %}">Rectangulos</a>
         </li>
-        <li class="nav-item" >
-          <a class="nav-link "  href="{% url 'tercerCorte' %}">Tercer corte</a>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Tercer Corte
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="{% url 'SuMaMu' %}">Suma, Resta y Mult</a>
+            <a class="dropdown-item" href="{% url 'inTraGau' %}">Inversa, Trans y Gauss</a>
         </li>
+        
       </ul>
-
+      
     </div>
-  </div>
-</nav>
+  </nav>
 
+  {% block content %}
 
-{% block content %}
+  {% endblock %}
 
-{% endblock %}
 
 <script src="{% static 'calculadora/js/jquery-3.5.1.js' %}"></script>
 <script src="{% static 'calculadora/js/popper.min.js' %}"></script>

@@ -1,39 +1,45 @@
 import sympy as sp
 
 
-def f(x):
-	b = funcion.free_symbols
-	var = b.pop()
-	valor = funcion.evalf(subs={var:x})
-	return valor
+class mSimp13:
 
-def Df(x):
-	b = funcion.free_symbols
-	var = b.pop()
-	df = sp.diff(funcion,var)
-	valor = df.evalf(subs = {var:x})
-	return valor
+	def __init__(self):
+		self.funcion = ''
 
-def simpson13(a, b):
-	h = (b - a) / 6
-	return h*(f(a) + 4* f((a+b)/2) + f(b))
+	def f(self,x):
+		b = self.funcion.free_symbols
+		var = b.pop()
+		valor = self.funcion.evalf(subs={var:x})
+		return valor
 
-def simpsonCompuesto13(a, b, n):
-	if(a > b):
-		return -simpsonCompuesto13(b, a, n)
-	i = a
-	h = (b - a) / n
-	suma = 0
-	while(i <= b):
-		if(i + h <= b):
-			suma += simpson13(i, i+h)
-		i += h
-	return suma
+	def Df(self,x):
+		b = self.funcion.free_symbols
+		var = b.pop()
+		df = sp.diff(self.funcion,var)
+		valor = df.evalf(subs = {var:x})
+		return valor
+	def simpson13(self,a, b):
 
-def error(a, b, n):
-	h = (b - a) / n
-	error = abs((-h ** 5 / 90) * Df((a + b) / 2))
-	return error
+		h = (b - a) / 6
+		return h*(self.f(a) + 4* self.f((a+b)/2) + self.f(b))
+
+	def simpsonCompuesto13(self,a, b, n):
+		if(a > b):
+			return -self.simpsonCompuesto13(b, a, n)
+		i = a
+		h = (b - a) / n
+		suma = 0
+		while(i <= b):
+			if(i + h <= b):
+				suma += self.simpson13(i, i+h)
+			i += h
+		return suma
+
+	def error(self,a, b, n):
+		h = (b - a) / n
+		error = abs((-h ** 5 / 90) * self.Df((a + b) / 2))
+		return error
+
 
 """print("Método de Simpson 1/3\n")
 x, y = sp.symbols('x y')
