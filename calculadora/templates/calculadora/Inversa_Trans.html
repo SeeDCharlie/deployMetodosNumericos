@@ -55,9 +55,11 @@
                 <button class="btn btn-danger" id="btnDeleteTres">Borrar Datos</button>
             </div>
             <div class="col-12">
-            <table class="col-12" id="matrizTres"  >
+                <div class="scrolldiv">
+                    <table class="col-12" id="matrizTres"  >
 
-                </table>
+                    </table>
+                </div>
             </div>
         </div>
         <hr>
@@ -75,7 +77,9 @@
                 <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
                     <button class= "dropdown-item" id="btnMaInversa" url="{% url 'calcMaInv' %}">Inversa</button>
                     <button class= "dropdown-item" id="btnMaTrans" url = "{% url 'calcMaTrans' %}">Transpuesta</button>
+                    <button class= "dropdown-item" data-toggle="modal" data-target="#modalProdEsca">Producto escalar</button>
                     <button class= "dropdown-item" id="btnMaGauss" url="{% url 'calcMaGauss' %}">Gauss Jordan</button>
+                    
                 </div>
             </div>
             
@@ -84,16 +88,40 @@
         <br>
         <div class="row">
             <div class="col-12">
-                <table id="matrixResultDos" >
+                <div class="scrolldiv">
+                    <table id="matrixResultDos" >
 
-                </table>
+                    </table>
+                </div>
             </div>
-            
         </div>
-
     </div>
     
     <br><br>
+
+    <div class="modal fade" id="modalProdEsca" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Ingrese el Producto a Escalar</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12">
+                        <input type="number" name="" id="producto_k" placeholder="Producto a Escalar">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" id="btnEscalar" url="{% url 'calcEscalar' %}">Calcular</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
 
 {% endblock %}

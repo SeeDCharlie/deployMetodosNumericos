@@ -80,6 +80,24 @@ $( "#btnMaTrans" ).on( "click", function() {
     }
 });
 //--------------------------------------------------------------------------------------------------------
+$( "#btnEscalar" ).on( "click", function() {
+    var rows = $('#rowsTres').val();
+    var cols = $('#colsTres').val();
+
+    if(rows == "" || cols == "" ){
+        alert("NO se han creado las matrices ");
+    }else{
+        $('#nameOperaUno').empty();
+        $('#nameOperaUno').append("Producto Escalar");
+        var datos = JSON.stringify({
+            mUno: getMatrix('matrizTres'),
+            producto:$("#producto_k").val()
+        }); 
+        calcMa('btnEscalar',datos,'matrixResultDos');
+        $('#modalProdEsca').modal('hide');
+    }
+});
+//--------------------------------------------------------------------------------------------------------
 $( "#btnMaGauss" ).on( "click", function() {
     var rows = $('#rowsTres').val();
     var cols = $('#colsTres').val();
@@ -237,9 +255,43 @@ function createMatrix(rows, cols, id_mariz) {
         content += "</tr>";
     }
 
-
     $('#'+id_mariz).append(content);
 }
+
+// ------------- AJUSTE CURVAS ------------
+
+
+$('#btnCalcularAjus').on("click", function(){
+
+    alert("btn ajuste de curvas");
+
+    var datos = JSON.stringify({
+        mUno: getMatrix('coeAjus')
+    });
+
+    calcEcua('btnCalcularAjus', datos, "reAjus","","");
+});
+
+$("#btnGraficarAjus").on("click", function(){
+
+    var dats = getMatrix('coeAjus');
+    var px = dats[0].toString();
+    var py = dats[1].toString();
+    var funcion = $("#reAjus").val();
+
+    $("#imgUnoPoli").attr("src","/graficap/"+funcion+"/"+px+"/"+py);
+    
+});
+
+$( "#btnDatosAjus" ).on( "click", function() {
+    var longiAjus = $("#longiAjus").val(); 
+    $("#coeAjus").empty();
+    if(longiAjus == ""){
+        alert("NO se han creado los campos ");
+    }else{
+        createMatrix(2, longiAjus, "coeAjus");
+    }    
+});
 
 function getRowsCols(){
     var dat = [[parseInt($('#rowsUno').val(), 10),parseInt($('#colsUno').val(),10)],

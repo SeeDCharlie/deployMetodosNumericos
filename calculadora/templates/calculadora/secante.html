@@ -2,7 +2,8 @@
 
 {% block content %}
 
-<label class="control-label col-sm-8" style="font-size:200%;"> Metodo Bisección</label> 
+<br>
+<label class="control-label col-sm-8" style="font-size:200%;"> Metodo Secante</label> 
 
 <div class="row">
   <div class="col-sm-7">
@@ -14,7 +15,7 @@
                         
                         <label class="control-label col-sm-8" >Ingrese la ecuación:</label>
                         <div class="col-sm-10">
-                        <input type="text" class="form-control" id="ecuaBise" placeholder="Ingresa una funcion">
+                        <input type="text" class="form-control" id="ecuaSeca" placeholder="Ingresa una funcion">
                         </div>
                         </div>                                                                        
 
@@ -22,25 +23,25 @@
 
                         <div class="form-group">                         
                         <label class="control-label col-sm-8" style="font-size:130%;"> Intervalos</label>                                              
-                        <label class="control-label col-sm-8" for="inaBise">Extremo inferior del intervalo (a):</label>
+                        <label class="control-label col-sm-8" for="inaSeca">Extremo inferior del intervalo (a):</label>
                         <div class="col-sm-10">                        
-                        <input type="number" class="form-control" id="inaBise" placeholder="Ingresa intervalo a">
+                        <input type="number" class="form-control" id="inaSeca" placeholder="Ingresa intervalo a">
                         </div>
                         </div>
 
                         <div class="form-group">
-                        <label class="control-label col-sm-8" for="inbBise">Extremo superior del intervalo (b):</label>
+                        <label class="control-label col-sm-8" for="inbSeca">Extremo superior del intervalo (b):</label>
                         <div class="col-sm-10">
-                        <input type="number" class="form-control" id="inbBise" placeholder="Ingresa intervalo b">
+                        <input type="number" class="form-control" id="inbSeca" placeholder="Ingresa intervalo b">
                         </div>
                         </div>                        
                         <div class="form-group">
-                            <label class="control-label col-sm-8" for="erToBise">Error de Tolerencia:</label>
+                            <label class="control-label col-sm-8" for="erToSeca">Error de Tolerencia:</label>
                             <div class="col-sm-10">
-                            <input type="number" class="form-control" id="erToBise" placeholder="Error mayor a 0 y menor a 1">
+                            <input type="number" class="form-control" id="erToSeca" placeholder="Error mayor a 0 y menor a 1">
                         </div>
                         <br>                        
-                        <button style="position: absolute; left: 7%;" type="button" class="btn btn-danger" id="btnIntervalosBise">Graficar en intervalo</button>                        
+                        <button style="position: absolute; left: 7%;" type="button" class="btn btn-danger" id="btnIntervalosSeca">Graficar en intervalo</button>                        
                         </div>                        
                         <br>       
 
@@ -49,23 +50,23 @@
                         <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
                             {% csrf_token %}    
-                        <button type="button" class="btn btn-primary" id="btnCalcularBise" url="{% url 'calcBiseccion' %}">Calcular Bisección</button>                        
-                        <button style="position: absolute; right: 3%;" type="button" class="btn btn-success" id="btnGraficarBise">Generar grafica</button>
+                        <button type="button" class="btn btn-primary" id="btnCalcularSeca" url="{% url 'calcSecante' %}">Calcular Secante</button>                        
+                        <button style="position: absolute; right: 3%;" type="button" class="btn btn-success" id="btnGraficarSeca">Generar grafica</button>
 
                         </div>
                         </div>                        
                         <br>
                         <div class="form-group">
-                            <label class="control-label col-sm-10" for="reBise">Resultado:</label>                                              
+                            <label class="control-label col-sm-10" for="reSeca">Resultado:</label>                                              
                         <div class="col-sm-10">
-                            <output type="number" class="form-control" id="reBise" placeholder="Resultado">                        
+                            <output type="number" class="form-control" id="reSeca" placeholder="Resultado">                        
                         </div>                        
                         </div>  
 
                         <div class="form-group">
-                            <label class="control-label col-sm-10" for="errBise">Error Relativo:</label>                                            
+                            <label class="control-label col-sm-10" for="errSeca">Error Relativo:</label>                                            
                         <div class="col-sm-10">
-                            <output type="number" class="form-control" id="errBise" placeholder="Error">  
+                            <output type="number" class="form-control" id="errSeca" placeholder="Error">  
                         </div>
 
                         </div>
@@ -78,13 +79,13 @@
         
         <div class="p-4">
             <label class="control-label col-sm-8" style="font-size:120%;"> <b> Grafica General </b></label> 
-            <img src="{%url 'grafica' funcion='x^2' a=-12 b=12 %}" height="300" width="400" id="imgUnoBisec">                  
+            <img src="{%url 'grafica' funcion='x^2' a=-12 b=12 %}" height="300" width="400" id="imgUnoSeca">                  
         </div>
         
         <div class="d-flex flex-row">
             <div class="p-4">
                 <label class="control-label col-sm-8" style="font-size:120%;"> <b> Grafica en Intervalos </b></label> 
-                <img src="{%url 'grafica' funcion='x^2' a=-12 b=12 %}" height="300" width="400" id="imgDosBisec">    
+                <img src="{%url 'grafica' funcion='x^2' a=-12 b=12 %}" height="300" width="400" id="imgDosSeca">    
             </div>                              
       </div>
   </div>

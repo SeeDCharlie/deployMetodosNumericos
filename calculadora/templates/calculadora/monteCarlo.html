@@ -2,6 +2,8 @@
 
 {% block content %}
 
+<label class="control-label col-sm-8" style="font-size:200%;"> Metodo MonteCarlo</label> 
+
 <div class="row">
   <div class="col-sm-7">
     <div class="d-flex flex-column justify-content-left">
@@ -62,9 +64,11 @@
   <div class="col-sm-3">
     <div class="row">
       <div class="col-12" style="margin: 10px;">
+        <label class="control-label col-sm-8" style="font-size:120%;"> <b> Grafica General </b></label> 
         <img src="{%url 'grafica' funcion='x^2' a='-12' b='12' %}" height="300" width="400" id="imgUnoMonte">
       </div>
       <div class="col-12" style="margin: 10px;">
+        <label class="control-label col-sm-8" style="font-size:115%;"> <b> Grafica en Intervalos </b></label> 
         <img src="{%url 'grafica' funcion='x^2' a='-12' b='12' %}" height="300" width="400" id="imgDosMonte">
       </div>
     </div>

@@ -7,16 +7,16 @@
     <link rel="stylesheet" href="{% static 'calculadora/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'calculadora/css/index/style.css' %}">
     <link rel="stylesheet" href="{% static 'calculadora/css/sumaResta/styles.css' %}">
-  </head>
+</head>
 <body>
 
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" >
     <a class="navbar-brand" href="#">MetodosNumericos</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
   
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent" >
       <ul class="navbar-nav mr-auto">
         
         <li class="nav-item dropdown">
@@ -30,6 +30,8 @@
             <a class="dropdown-item" href="{% url 'falsa_posicion' %}">Falsa Posición</a>
             <a class="dropdown-item" href="{% url 'newton_Rhapson' %}">Newton Rhapson</a>
             <a class="dropdown-item" href="{% url 'polinomio' %}">Polinomio</a>
+            <a class="dropdown-item" href="{% url 'secante' %}">Secante</a>
+            
         </li>
 
         <li class="nav-item dropdown">
@@ -51,6 +53,7 @@
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="{% url 'SuMaMu' %}">Suma, Resta y Mult</a>
             <a class="dropdown-item" href="{% url 'inTraGau' %}">Inversa, Trans y Gauss</a>
+            <a class="dropdown-item" href="{% url 'ajuste_de_curvas' %}">Ajuste de Curvas</a>
         </li>
         
       </ul>
@@ -58,9 +61,15 @@
     </div>
   </nav>
 
-  {% block content %}
+<nav  style="background-color: rgb(27, 27, 27); color: floralwhite; ">
+    
+  <div class="container">
+    {% block content %}
 
-  {% endblock %}
+    {% endblock %}
+  </div>
+</nav>
+  
 
 
 <script src="{% static 'calculadora/js/jquery-3.5.1.js' %}"></script>

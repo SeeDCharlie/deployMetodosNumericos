@@ -7,6 +7,8 @@ function createCoe(num) {
 
     $("#coePoli").append(content);
 }
+
+
 function graficarFuncion(funcion, a, b, nameImg) {
 
     $("#" + nameImg).attr("src", "/grafica/" + funcion + "/" + a + "/" + b);
@@ -217,4 +219,56 @@ $("#btnCalcularPoli").on("click", function () {
         grado: $('#no_coe').val()
     });
     calcEcua("btnCalcularPoli", datos, "rePoli", "", "");
+});
+
+//-------------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------
+//-------// metodos de Secante
+
+
+
+$("#btnGraficarSeca").on("click", function () {
+    var funcion = $("#ecuaSeca").val();
+    if (funcion != null && funcion != "") {
+        if (funcion.indexOf("sqrt") != -1) {
+            graficarFuncion(funcion, 1, 25, "imgUnoSeca");
+        } else {
+            graficarFuncion(funcion, -12, 12, "imgUnoSeca");
+        }
+    }
+    else {
+        alert("Ingrese Una funcion");
+    }
+});
+
+$("#btnIntervalosSeca").on("click", function () {
+
+    var funcion = $("#ecuaSeca").val();
+    var a = $("#inaSeca").val();
+    var b = $("#inbSeca").val();
+
+    if (funcion != null && funcion != "" && a != "" && b != "") {
+        graficarFuncion(funcion, a, b, "imgDosSeca");
+    }
+    else {
+
+        alert("Ingrese Una funcion");
+    }
+
+});
+
+$("#btnCalcularSeca").on("click", function () {
+
+    var ecuacion = $('#ecuaSeca').val();
+    var _a = $('#inaSeca').val();
+    var _b = $('#inbSeca').val();
+    var _error = $('#erToSeca').val();
+    var datos = JSON.stringify({
+        funcion: ecuacion,
+        a: _a,
+        b: _b,
+        error:_error
+    });
+    alert("los datosde la secante son : " + datos);
+    calcEcua("btnCalcularSeca", datos, "reSeca", "errSeca", "");
 });

@@ -2,9 +2,10 @@
 
 {% block content %}
 
+<label class="control-label col-sm-8" style="font-size:200%;"> Calc. Polinomios</label> 
 
 <div class="row">
-    <div class="col-sm-7">
+    <div class="col-8">
         <div class="d-flex flex-column justify-content-left">
             <div class="p-4">
 
@@ -17,15 +18,20 @@
                     </div>
                     <br>
                     <label class="control-label col-sm-8" for="gradoPoli">Grado polinomio:</label>
-                    <div class="col-sm-3">
-                        <input type="number" id="no_coe" class="form-control" placeholder="Mayor a 0"><br>
+                    <div class="col-12">
+                        <div class="row">
+                            <input type="number" id="no_coe" class="form-control col" placeholder="Mayor a 0" style="margin: 10px;"><br>
 
-                        <button type="button" class="btn btn-warning" id="btnNoCoe">No.Coeficientes</button>
+                            <button type="button" class="btn btn-warning col" id="btnNoCoe" style="margin: 10px;">No. Coeficientes</button>
+                        </div>
 
                         <div id="container" style="margin: 10px;">
-                            <table id="coePoli">
+                            <div class="scrolldiv">
+                                <table id="coePoli">
 
-                            </table>
+                                </table>
+                            </div>
+                       
                         </div>
                     </div>
                     <br>
@@ -55,6 +61,7 @@
     <div class="col-sm-3">
         <div class="d-flex flex-column">
             <div class="p-4">
+                <label class="control-label col-sm-8" style="font-size:120%;"> <b> Grafica General </b></label> 
                 <img src="{%url 'grafica' funcion='x^2' a=-12 b=12 %}" height="300" width="400" id="imgUnoPoli">
             </div>
 
